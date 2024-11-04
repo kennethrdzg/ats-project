@@ -1,0 +1,127 @@
+<script></script>
+<div>
+    <br>
+    <div class="center-text" style="color: orange;">
+        <p>
+            <strong>
+                [ Making your Life Easier ]
+            </strong>
+        </p>
+    </div>
+    <div class="center-text">
+        <h2>
+            Discovering the World
+        </h2>
+    </div>
+
+    <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="btn-group">
+              <button type="button" class="btn" (click)="filterPostals('')">All</button>
+              <button type="button" class="btn" (click)="filterPostals('travel')">Travel</button>
+              <button type="button" class="btn" (click)="filterPostals('lifestyle')">Lifestyle</button>
+              <button type="button" class="btn" (click)="filterPostals('business')">Business</button>
+              <button type="button" class="btn" (click)="filterPostals('food')">Food</button>
+              <button type="button" class="btn" (click)="filterPostals('work')">Work</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-12 d-flex justify-content-end">
+            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#myModal">
+              New Postcard
+            </button>
+          </div>
+        </div>
+    </div>
+    <br>
+    <div>  
+          <div class="modal" id="myModal">
+            <div class="modal-dialog">
+              <div class="modal-content">
+          
+                <div class="modal-header">
+                  <h4 class="modal-title">New Postcard</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+          
+                <div class="modal-body">
+                    <div>
+                        <input type="text" placeholder="Title">
+                    </div>
+                    <br>
+                    <div>
+                        <input type="text" placeholder="Text">
+                    </div>
+                </div>
+          
+                <div class="modal-footer">
+                    <button type="button" class="btn" data-bs-dismiss="modal">Create Postcard</button>
+                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                </div>
+          
+              </div>
+            </div>
+          </div>
+    </div>
+    <div class="row">
+        @for (postcard of postcards; track $index; let i = $index) {
+            <div class="col-md-6">
+                <div class="card">
+                    <img src="{{postcard.imageUrl}}" alt="Image" class="card-img">
+                    <div class="card-img-overlay d-flex flex-column justify-content-center align-items-center">
+                        <h5 class="card-title">{{postcard.title}}</h5>
+                        <p class="card-text">{{postcard.message}}</p>
+                        <div class="container">
+                            <div class="row">
+                              <div class="col-12 d-flex justify-content-end">
+                                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#postcardModal" (click)="openEditModal(i)">
+                                  Edit
+                                </button>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal" id="postcardModal">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+              
+                    <div class="modal-header">
+                      <h4 class="modal-title">{{postcard.name}} Postcard</h4>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+              
+                    <div class="modal-body">
+                        <div>
+                            <input type="text" placeholder="Title" [(ngModel)]="title">
+                        </div>
+                        <br>
+                        <div>
+                            <input type="text" placeholder="Text" [(ngModel)]="content">
+                        </div>
+                    </div>
+              
+                    <div class="modal-footer">
+                        <button type="button" class="btn" data-bs-dismiss="modal" (click)="editPostcard(i)">Edit Postcard</button>
+                      <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    </div>
+              
+                  </div>
+                </div>
+              </div>
+        }
+    </div>
+    @if (postcards.length <= 0) {
+        <div class="center-text">
+            <p>No Postals Available</p>
+        </div>
+    }
+</div>

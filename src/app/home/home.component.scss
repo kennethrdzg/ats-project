@@ -1,0 +1,26 @@
+img{
+    width: 100%;
+}
+
+.card{
+    width: 100%;
+    h5, p {
+        color: white;
+    }
+}
+
+.center-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-group {
+    display: flex;
+    justify-content: center;
+  }
+
+  button{
+    background-color: orange;
+    border-color: orange;
+  }
